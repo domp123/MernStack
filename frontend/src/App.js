@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
+import React, { useState } from "react";
 
-// pages & components
 // pages & components
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -15,17 +15,27 @@ import Contact from "./pages/Contact";
 
 function App() {
   const { user } = useAuthContext();
+  const [imageSelection, setImageSelection] = useState("both");
+  const handleImageSelection = (selection) => {
+    setImageSelection(selection);
+  };
 
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
+        <Navbar handleImageSelection={handleImageSelection} />
         <Sidebar />
         <div className="pages">
           <Routes>
             <Route
               path="/"
-              element={user ? <Home /> : <Navigate to="/login" />}
+              element={
+                user ? (
+                  <Home imageSelection={imageSelection} />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
             />
             <Route
               path="/login"
@@ -37,19 +47,43 @@ function App() {
             />
             <Route
               path="/AddPet"
-              element={user ? <AddPet /> : <Navigate to="/login" />}
+              element={
+                user ? (
+                  <AddPet imageSelection={imageSelection} />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
             />
             <Route
               path="/AboutUs"
-              element={user ? <AboutUs /> : <Navigate to="/login" />}
+              element={
+                user ? (
+                  <AboutUs imageSelection={imageSelection} />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
             />
             <Route
               path="/Products"
-              element={user ? <Products /> : <Navigate to="/login" />}
+              element={
+                user ? (
+                  <Products imageSelection={imageSelection} />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
             />
             <Route
               path="/Contact"
-              element={user ? <Contact /> : <Navigate to="/login" />}
+              element={
+                user ? (
+                  <Contact imageSelection={imageSelection} />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
             />
           </Routes>
         </div>

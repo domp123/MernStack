@@ -1,8 +1,19 @@
 import { useAuthContext } from "../hooks/useAuthContext";
 import React from "react";
 
-const Home = () => {
+const Home = ({ imageSelection }) => {
   useAuthContext();
+
+  let imageUrl = "";
+  if (imageSelection === "cat") {
+    imageUrl =
+      "https://assets.elanco.com/8e0bf1c2-1ae4-001f-9257-f2be3c683fb1/2366147c-9d05-4414-b016-2bd0e3233b1a/shutterstock_97506335_0.jpg";
+  } else if (imageSelection === "dog") {
+    imageUrl = "https://wallpapers.com/images/featured/wj7msvc5kj9v6cyy.jpg";
+  } else {
+    imageUrl =
+      "https://storage.googleapis.com/petbacker/images/blog/2017/dog-and-cat-cover.jpg";
+  }
 
   return (
     <div className="home">
@@ -15,10 +26,7 @@ const Home = () => {
       <header></header>
 
       <main>
-        <img
-          src="https://wallpapers.com/images/featured/wj7msvc5kj9v6cyy.jpg"
-          alt="Pets Are Us"
-        />
+        <img src={imageUrl} alt="Pets Are Us" />
 
         <h2>Welcome to Pets Are Us!</h2>
         <p>

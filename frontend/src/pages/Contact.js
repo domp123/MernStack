@@ -1,17 +1,40 @@
+import React, { useEffect } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
-import React from "react";
 
 const Contact = () => {
   useAuthContext();
 
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDGPWOrft6yvbJ7-IvAnZBs2BFq2w3fTBo`;
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+
+    script.onload = initMap;
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  const initMap = () => {
+    // Create a new map instance
+    const map = new window.google.maps.Map(document.getElementById("map"), {
+      center: { lat: 40.7128, lng: -74.006 },
+      zoom: 12,
+    });
+
+    // Add a marker to the map
+    new window.google.maps.Marker({
+      position: { lat: 40.7128, lng: -74.006 },
+      map: map,
+      title: "Pets Are Us Location",
+    });
+  };
+
   return (
     <div className="contact">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Pets Are Us - Contact Us</title>
-      </head>
-
       <header></header>
 
       <main>
@@ -44,15 +67,7 @@ const Contact = () => {
           </div>
 
           <div className="map-container">
-            <iframe
-              title="Pets Are Us Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12345.6789!2d-90.12345678901234!3d40.123456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDI5JzE4LjciTiA5MMKwNDknMjcuNCJX!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
-              width="600"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-            ></iframe>
+            <div id="map" style={{ width: "600px", height: "450px" }}></div>
           </div>
         </div>
 

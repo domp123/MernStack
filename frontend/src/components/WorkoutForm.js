@@ -21,7 +21,7 @@ const WorkoutForm = () => {
       return;
     }
 
-    const workout = { petName, petAge, petType };
+    const workout = { petName, petAge, petType, petBreed };
 
     const response = await fetch("/api/workouts", {
       method: "POST",

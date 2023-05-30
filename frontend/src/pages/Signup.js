@@ -35,7 +35,8 @@ const Signup = () => {
 
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAaUq7MIfxLg6ddQknANvVIpeMLG4FuLX0&libraries=places`;
+    script.src =
+      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAhWjJRwOY8wmkNtFsEhi20LJxB-v6S_Bc&libraries=places`;
     script.onload = () => {
       const autocompleteService =
         new window.google.maps.places.AutocompleteService();

@@ -1,33 +1,17 @@
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-const Navbar = () => {
+const Navbar = ({ handleImageSelection }) => {
   const { logout } = useLogout();
   const { user } = useAuthContext();
-  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
-
-  useEffect(() => {
-    let prevScrollPos = window.pageYOffset;
-    const handleScroll = () => {
-      const currentScrollPos = window.pageYOffset;
-      const isScrollingDown = prevScrollPos < currentScrollPos;
-
-      setIsNavbarVisible(!isScrollingDown || currentScrollPos < 80);
-      prevScrollPos = currentScrollPos;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const handleClick = () => {
     logout();
   };
 
   return (
-    <header className={`header ${isNavbarVisible ? "" : "scroll"}`}>
+    <header>
       <div className="container">
         <Link to="/">
           <h1>Pets Are Us</h1>
@@ -48,6 +32,15 @@ const Navbar = () => {
               <Link to="/signup">Signup</Link>
             </div>
           )}
+          <div>
+            <button onClick={() => handleImageSelection("cat")}>
+              Cat Person
+            </button>
+            <button onClick={() => handleImageSelection("dog")}>
+              Dog Person
+            </button>
+            <button onClick={() => handleImageSelection("both")}>Both</button>
+          </div>
         </nav>
       </div>
     </header>

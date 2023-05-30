@@ -34,6 +34,12 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  pets: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Pets",
+    },
+  ],
 });
 
 // static signup method
@@ -44,7 +50,8 @@ userSchema.statics.signup = async function (
   lastName,
   phoneNumber,
   Address,
-  postCode
+  postCode,
+  pets
 ) {
   // validation
   if (!email || !password) {
@@ -82,6 +89,7 @@ userSchema.statics.signup = async function (
     phoneNumber,
     Address,
     postCode,
+    pets,
 
     password: hash,
   });

@@ -23,7 +23,7 @@ const getWorkout = async (req, res) => {
 //create new workout
 
 const createWorkout = async (req, res) => {
-  const { petName, petAge, petType, petBreed} = req.body;
+  const { petName, petAge, petType, petBreed } = req.body;
 
   let emptyFields = [];
   if (!petName) {
@@ -36,7 +36,7 @@ const createWorkout = async (req, res) => {
     emptyFields.push("Pet Type");
   }
   if (!petBreed) {
-    emptyFields.push("Pet Type");
+    emptyFields.push("Pet Breed");
   }
   if (emptyFields.length > 0) {
     return res
@@ -46,7 +46,13 @@ const createWorkout = async (req, res) => {
   //add new workout to DB
   try {
     const user_id = req.user._id;
-    const workout = await Workout.create({ petName, petAge, petType,petBreed, user_id });
+    const workout = await Workout.create({
+      petName,
+      petAge,
+      petType,
+      petBreed,
+      user_id,
+    });
     res.status(200).json(workout);
   } catch (error) {
     response.status(400).json({ error: error.message });

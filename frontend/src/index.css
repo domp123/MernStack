@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
-@import 'bootstrap/dist/css/bootstrap.min.css';
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap");
+@import "bootstrap/dist/css/bootstrap.min.css";
 /* Define root variables */
 :root {
   --primary-color: #1aac83;
@@ -24,7 +24,6 @@ body {
   z-index: 999;
 }
 
-
 header .container {
   max-width: 1400px;
   margin: 0 auto;
@@ -43,7 +42,7 @@ header a {
 /* Define styles for pages container */
 .pages {
   max-width: 1400px;
-  padding:  80px 20px 20px; /* Updated padding: top 80px, bottom 20px */;
+  padding: 80px 20px 20px; /* Updated padding: top 80px, bottom 20px */
   margin: 0 auto;
 }
 
@@ -54,7 +53,6 @@ header a {
   gap: 100px;
 }
 
-
 .home img {
   max-width: 100%;
 }
@@ -63,26 +61,26 @@ header a {
   margin-top: 50px;
 }
 
-/* Define styles for workout details */
-.workout-details {
+/* Define styles for pet details */
+.pet-details {
   background: #fff;
   border-radius: 4px;
   margin: 20px auto;
   padding: 20px;
   position: relative;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 }
-.workout-details h4 {
+.pet-details h4 {
   margin: 0 0 10px 0;
   font-size: 1.2em;
   color: var(--primary);
 }
-.workout-details p {
+.pet-details p {
   margin: 0;
   font-size: 0.9em;
   color: #555;
 }
-.workout-details span {
+.pet-details span {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -93,8 +91,9 @@ header a {
   color: #333;
 }
 
-/* new workout form */
-label, input {
+/* new pet form */
+label,
+input {
   display: block;
 }
 input {
@@ -159,6 +158,33 @@ form.login {
   background: #fff;
   border-radius: 4px;
 }
+.form-control-address {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+ul.address-options {
+  list-style: none;
+  padding: 0;
+}
+
+ul.address-options li {
+  padding: 8px;
+  cursor: pointer;
+  background-color: #f1f1f1;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+ul.address-options li:hover {
+  background-color: #eaeaea;
+}
+
 .Sidebar {
   background-color: #060b26;
   height: 80px;
@@ -227,7 +253,6 @@ form.login {
   background-color: #1a83ff;
 }
 
-
 .side-menu-items {
   width: 100%;
 }
@@ -243,7 +268,7 @@ form.login {
 
 span {
   margin-left: 16px;
-} 
+}
 .contact-details {
   display: flex;
   justify-content: space-between;
@@ -334,4 +359,33 @@ footer {
 
 .footer a:hover {
   color: var(--primary-color);
+}
+button {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  font-family: "Poppins", sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px 5px; /* This will add some space between your buttons */
+}
+
+button:hover {
+  background-color: #1f8e63; /* Change the hover background color as desired */
+}
+
+/* These are your updated styles for the message text */
+
+.pet-details p {
+  margin: 0;
+  font-size: 1.2em; /* Increase the font size to make the message text a bit larger */
+  color: #555;
+}
+
+/* Add this style for the "My requests" header */
+
+h3.my-requests {
+  font-size: 1.8rem;
+  margin: 20px 0;
 }

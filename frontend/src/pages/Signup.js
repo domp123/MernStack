@@ -90,9 +90,14 @@ const Signup = () => {
       />
 
       <label>Address:</label>
-      <input type="text" onChange={handleAddressChange} value={Address} />
+      <input
+        type="text"
+        className="form-control-address"
+        onChange={handleAddressChange}
+        value={Address}
+      />
       {AddressOptions.length > 0 && (
-        <ul>
+        <ul className="address-options">
           {AddressOptions.map((option) => (
             <li key={option.id} onClick={() => setAddress(option.description)}>
               {option.description}

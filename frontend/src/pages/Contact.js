@@ -1,37 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 const Contact = () => {
   useAuthContext();
-
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDGPWOrft6yvbJ7-IvAnZBs2BFq2w3fTBo`;
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
-
-    script.onload = initMap;
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
-  const initMap = () => {
-    // Create a new map instance
-    const map = new window.google.maps.Map(document.getElementById("map"), {
-      center: { lat: 40.7128, lng: -74.006 },
-      zoom: 12,
-    });
-
-    // Add a marker to the map
-    new window.google.maps.Marker({
-      position: { lat: 40.7128, lng: -74.006 },
-      map: map,
-      title: "Pets Are Us Location",
-    });
-  };
 
   return (
     <div className="contact">
@@ -51,11 +22,11 @@ const Contact = () => {
             <p>
               Pets Are Us
               <br />
-              123 Main Street
+              31 The Parade,
               <br />
-              City, State 12345
+              Norwood SA 5067
               <br />
-              United States
+              Adelaide
             </p>
 
             <h3>Contact Information</h3>
@@ -67,7 +38,16 @@ const Contact = () => {
           </div>
 
           <div className="map-container">
-            <div id="map" style={{ width: "600px", height: "450px" }}></div>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13085.457607349028!2d138.6193607036579!3d-34.922396866752436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ab0c94fa7bef7b5%3A0x141a34c30d0ae895!2sPetbarn!5e0!3m2!1sen!2sau!4v1686114770579!5m2!1sen!2sau"
+              width="600"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Google Map"
+            ></iframe>
           </div>
         </div>
 

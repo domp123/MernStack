@@ -21,9 +21,6 @@ const Navbar = ({ handleImageSelection }) => {
             <div>
               <span>{user.email} &nbsp; </span>
               <button onClick={handleClick}>Log out</button>
-              <button>
-                <Link to="/AddPet">Add a pet</Link>
-              </button>
             </div>
           )}
           {!user && (
@@ -40,6 +37,12 @@ const Navbar = ({ handleImageSelection }) => {
               Dog Person
             </button>
             <button onClick={() => handleImageSelection("both")}>Both</button>
+            <button>
+              <Link to="/AddPet">Add a pet</Link>
+            </button>
+            <button>
+              <Link to="/PlayDates">Play Dates</Link>
+            </button>
           </div>
         </nav>
       </div>

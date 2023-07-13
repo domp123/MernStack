@@ -1,9 +1,8 @@
 import { useAuthContext } from "./useAuthContext";
-import { useWorkoutsContext } from "./useWorkoutsContext";
-
+import { usePetsContext } from "./usePetContext";
 export const useLogout = () => {
   const { dispatch } = useAuthContext();
-  const { dispatch: workoutsDispatch } = useWorkoutsContext();
+  const { dispatch: workoutsDispatch } = usePetsContext();
   const logout = () => {
     //remove user from storage
     localStorage.removeItem("user");

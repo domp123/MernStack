@@ -4,7 +4,7 @@ const validator = require("validator");
 
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+const UserSchema = new Schema({
   email: {
     type: String,
     required: true,
@@ -37,13 +37,19 @@ const userSchema = new Schema({
   pets: [
     {
       type: mongoose.Types.ObjectId,
-      ref: "Pets",
+      ref: "pet",
+    },
+  ],
+  playDates: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "playDate",
     },
   ],
 });
 
 // static signup method
-userSchema.statics.signup = async function (
+UserSchema.statics.signup = async function (
   email,
   password,
   firstName,
@@ -98,7 +104,7 @@ userSchema.statics.signup = async function (
 };
 
 // static login method
-userSchema.statics.login = async function (email, password) {
+UserSchema.statics.login = async function (email, password) {
   if (!email || !password) {
     throw Error("All fields must be filled");
   }
@@ -116,6 +122,5 @@ userSchema.statics.login = async function (email, password) {
   return user;
 };
 
-module.exports = mongoose.model("User", userSchema);
-
-module.exports = mongoose.model("User", userSchema);
+const User = mongoose.model("user", UserSchema);
+module.exports = User;

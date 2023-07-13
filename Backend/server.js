@@ -2,9 +2,12 @@ require("dotenv").config();
 
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 
-const workoutRoutes = require("./routes/workouts");
+const petRoutes = require("./routes/petRoutes");
 const userRoutes = require("./routes/user");
+const playDateRoutes = require("./routes/PlayDateRoutes");
+const requireAuth = require("./middleware/requireAuth");
 
 const app = express();
 
@@ -17,8 +20,10 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.use("/api/workouts", workoutRoutes);
+app.use("/api/pets", petRoutes);
 app.use("/api/user", userRoutes);
+app.use("/images", express.static(path.join(__dirname, "uploads")));
+app.use("/api/playdates", requireAuth, playDateRoutes);
 
 // Connect to MongoDB
 mongoose

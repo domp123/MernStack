@@ -1,18 +1,15 @@
+import PetDetails from "../components/PetDetails";
+import PetForm from "../components/PetForm";
 import { useEffect } from "react";
-import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+import { usePetsContext } from "../hooks/usePetContext";
 import { useAuthContext } from "../hooks/useAuthContext";
-
-// components
-import WorkoutDetails from "../components/WorkoutDetails";
-import WorkoutForm from "../components/WorkoutForm";
-
 const PlayDate = () => {
-  const { workouts, dispatch } = useWorkoutsContext();
+  const { pets, dispatch } = usePetsContext();
   const { user } = useAuthContext();
 
   useEffect(() => {
     const fetchWorkouts = async () => {
-      const response = await fetch("/api/workouts", {
+      const response = await fetch("/api/pets", {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       const json = await response.json();
@@ -26,16 +23,39 @@ const PlayDate = () => {
       fetchWorkouts();
     }
   }, [dispatch, user]);
+  const handleImageUpload = async (event, petId) => {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+
+    const response = await fetch(`/api/pets/${petId}/image`, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+
+    const json = await response.json();
+    if (response.ok) {
+      console.log(json.message); // Image uploaded successfully
+    }
+  };
 
   return (
     <div className="home">
-      <div className="workouts">
-        {workouts &&
-          workouts.map((workout) => (
-            <WorkoutDetails key={workout._id} workout={workout} />
+      <div className="pets">
+        {pets &&
+          pets.map((pet) => (
+            <PetDetails
+              key={pet._id}
+              pet={pet}
+              onImageUpload={handleImageUpload}
+            />
           ))}
       </div>
-      <WorkoutForm />
+
+      <PetForm />
     </div>
   );
 };

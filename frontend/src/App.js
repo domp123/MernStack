@@ -12,6 +12,7 @@ import AboutUs from "./pages/AboutUs";
 import Sidebar from "./components/Sidebar";
 import Products from "./pages/Products";
 import Contact from "./pages/Contact";
+import PlayDates from "./pages/PlayDates";
 
 function App() {
   const { user } = useAuthContext();
@@ -80,6 +81,16 @@ function App() {
               element={
                 user ? (
                   <Contact imageSelection={imageSelection} />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            <Route
+              path="/playdates"
+              element={
+                user ? (
+                  <PlayDates className="PlayDates" />
                 ) : (
                   <Navigate to="/login" />
                 )
